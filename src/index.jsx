@@ -75,6 +75,10 @@ export default class ImagesUploader extends Component {
 			filesInputContainer: PropTypes.object,
 			notification: PropTypes.object,
 		}),
+		// custom props:
+		owner: PropTypes.string,
+  		ownerId: PropTypes.number,
+  		typeId: PropTypes.number
 	}
 
 	static defaultProps = {
@@ -293,12 +297,27 @@ export default class ImagesUploader extends Component {
 	async loadImages(files: FileList, url: string, onLoadEnd?: Function): any {
 		if (url) {
 			try {
+				// get custom props:
+				let {owner, ownerId, typeId} = this.props;
+				// Customization for project props:
+				//  let owner = 'entreprise'
+				// let owner_id = this.props.entreprise.id
+  				// let typeId: '1' // profile picture
+  				
 				const imageFormData = new FormData();
 
 				for (let i = 0; i < files.length; i++) {
 					imageFormData.append('imageFiles', files[i], files[i].name);
+					imageFormData.append('owner', owner);
+					imageFormData.append('owner_id', ownerId);
+					imageFormData.append('typeId', typeId);
 				}
+				
+				
 
+				// need hearders ?
+				// need options to specifiy 'Accept', 'application/json' ?
+				
 				let response = await fetch(url, {
 					method: 'POST',
 					body: imageFormData,
