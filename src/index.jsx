@@ -1,12 +1,13 @@
 /* @flow */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import fetch from 'isomorphic-fetch';
 import autobind from 'autobind-decorator';
 import classnames from 'classnames';
 import Dropzone from 'react-dropzone';
 import Button from 'react-progress-button';
 import 'babel-core/register';
-import 'babel-polyfill';
+//import 'babel-polyfill';
 
 export default class ImagesUploader extends Component {
 	/* eslint-disable react/sort-comp */
